@@ -1,4 +1,3 @@
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell } from 'recharts';
 import { useFinance } from '../context/FinanceContext';
 import { Editable } from './Editable';
 

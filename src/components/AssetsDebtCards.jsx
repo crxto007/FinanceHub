@@ -5,8 +5,8 @@ import { Editable } from './Editable';
 export function AssetsDebtCards() {
   const { data, updateAccount, totalAssets, totalDebt } = useFinance();
 
-  const assetsData = data.monthlyData.map((m, i) => ({ month: m.month, value: 28000 + i * 500 + Math.random() * 1000 }));
-  const debtData = data.monthlyData.map((m, i) => ({ month: m.month, value: 13000 - i * 200 + Math.random() * 200 }));
+  const assetsData = data.monthlyData.map((m, i) => ({ month: m.month, value: 28000 + i * 500 }));
+  const debtData = data.monthlyData.map((m, i) => ({ month: m.month, value: 13000 - i * 200 }));
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

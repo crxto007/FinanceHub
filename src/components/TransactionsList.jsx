@@ -1,4 +1,5 @@
-import { Check, Filter, Search } from 'lucide-react';
+import { useState } from 'react';
+import { Check, Search } from 'lucide-react';
 import { useFinance } from '../context/FinanceContext';
 import { Editable, EditableSelect } from './Editable';
 

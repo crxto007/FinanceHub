@@ -1,18 +1,24 @@
-import { Plus, TrendingUp, TrendingDown, PieChart } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Plus, TrendingUp, PieChart } from 'lucide-react';
 import { LineChart, Line, ResponsiveContainer, Tooltip } from 'recharts';
 import { useFinance } from '../context/FinanceContext';
 import { Editable } from './Editable';
 
 export function Investments() {
   const { data, updateInvestment } = useFinance();
+  const [chartData, setChartData] = useState([]);
+
+  useEffect(() => {
+    if (data.monthlyData && data.investments) {
+      const total = data.investments.reduce((sum, i) => sum + i.balance, 0);
+      setChartData(data.monthlyData.map((m, i) => ({
+        month: m.month,
+        value: total + i * 200 + 300
+      })));
+    }
+  }, [data.monthlyData, data.investments]);
 
   const totalInvested = data.investments.reduce((sum, i) => sum + i.balance, 0);
-
-  const chartData = data.monthlyData.map((m, i) => ({
-    month: m.month,
-    value: totalInvested + i * 200 + Math.random() * 500
-  }));
-
   const topPerformer = [...data.investments].sort((a, b) => b.balance - a.balance)[0];
 
   return (
@@ -116,7 +122,7 @@ export function Investments() {
                   </p>
                   <div className="flex items-center gap-1 text-sm text-green-600">
                     <TrendingUp size={12} />
-                    <span>+{(Math.random() * 15 + 5).toFixed(1)}%</span>
+                    <span>+8.5%</span>
                   </div>
                 </div>
               </div>
