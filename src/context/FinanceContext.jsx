@@ -154,6 +154,13 @@ export function FinanceProvider({ children }) {
     }));
   };
 
+  const deleteGoal = (id) => {
+    setData(d => ({
+      ...d,
+      goals: d.goals.filter(g => g.id !== id)
+    }));
+  };
+
   const addGoal = (goal) => {
     setData(d => ({
       ...d,
@@ -213,6 +220,7 @@ export function FinanceProvider({ children }) {
     updateBudget,
     updateBudgetIncome,
     updateGoal,
+    deleteGoal,
     addGoal,
     updateUpcoming,
     recalculateBudget,

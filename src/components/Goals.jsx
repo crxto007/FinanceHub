@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Plus, Target, Trash2 } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 import { useFinance } from '../context/FinanceContext';
 import { Editable } from './Editable';
 
 export function Goals() {
-  const { data, updateGoal, addGoal } = useFinance();
+  const { data, updateGoal, addGoal, deleteGoal } = useFinance();
   const [showAdd, setShowAdd] = useState(false);
   const [newGoal, setNewGoal] = useState({ name: '', target: '', saved: '', deadline: '', icon: '🎯' });
 
@@ -124,6 +124,12 @@ export function Goals() {
                     <p className="text-sm text-gray-500 dark:text-gray-400">Deadline: {formatDate(goal.deadline)}</p>
                   </div>
                 </div>
+                <button
+                  onClick={() => deleteGoal(goal.id)}
+                  className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                >
+                  <Trash2 size={16} />
+                </button>
               </div>
 
               <div className="mb-4">
